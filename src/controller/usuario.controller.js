@@ -1,11 +1,8 @@
-import express from 'express'
-import { prisma } from './src/db.js'
-const app= express()
-app.use(express.json())
+import { prisma } from "../db.js"
 
 
-// CRUD USUARIO 
-app.get('/usuario',async function(req, res){
+
+export async function ListaUser(req, res){
     try{
         const users= await prisma.usuario.findMany()    
         res.json(users)
@@ -14,9 +11,9 @@ app.get('/usuario',async function(req, res){
         res.send({error:"erro ao BUSCAR usuario111"})
     }
 
-})
+}
 
-app.get('/:UserId', async (req,res)=>{
+export async function FindUserbyId(req,res){
     const usuarioId =req.params.id
     try{
         const user= await prisma.usuario.findUnique({
@@ -30,9 +27,10 @@ app.get('/:UserId', async (req,res)=>{
         res.send({error:"erro ao BUSCAR usuario"})
     }
     
-})
+}
 
-app.post('/cadastroUser',async(req,res)=>{
+export async function CreateUser(req,res) {
+    
     const {nome, senha} = req.body
     try{
         if(!nome && !senha){
@@ -57,9 +55,10 @@ app.post('/cadastroUser',async(req,res)=>{
     }
     
 
-})
+}
 
-app.put("/:id", async(req,res)=>{
+export async function UpidateUser(req,res) {
+
     const {id}= req.params
     const {nome, senha}=req.body
     try{
@@ -72,9 +71,10 @@ app.put("/:id", async(req,res)=>{
         res.json({erro:"erro ao atualizar usuario"})
     }
     
-})
+}
 
-app.delete("/:id", async(req,res)=>{
+export async function DeleteUser(req,res) {
+
     const {id}= req.params
     try{
         const user= await prisma.usuario.delete({
@@ -90,40 +90,4 @@ app.delete("/:id", async(req,res)=>{
         res.json({error:"erro ao deletar usuario"})
     }
     
-})
-
-// CRUD LIVRO 
-
-// app.get("/livro",async function (req,res) {
-//     try{
-//         const books= await prisma.livro.findMany()
-//         console.log(books)
-//         res.json(books)
-//     }catch(error){
-//         res.send({error:"erro ao BUSCAR livros"})
-//     }
-    
-
-// })
-
-// app.get('/livro/:id', async (req,res)=>{
-//     const livroId =req.params
-//     try{
-//         const book= await prisma.livro.findUnique({
-//             where:{
-//                 id: livroId
-//             }
-//         })
-//         res.json(book)
-//     }catch(error){
-//         console.log(error)
-//         res.send({error:"erro ao BUSCAR livro"})
-//     }
-    
-// })
-
-
-
-app.listen(3000, ()=>{
-    console.log("servidor rodando na porta 3000")
-})
+}
