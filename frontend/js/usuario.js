@@ -23,6 +23,7 @@ async function CreateUser() {
     console.log('Usuário criado com sucesso:')
     alert('Usuário criado com sucesso')
 
+
   } catch (error) {
         console.error('Erro de conexão:', error)    
   }
