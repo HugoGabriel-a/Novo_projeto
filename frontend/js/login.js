@@ -16,7 +16,10 @@ async function login() {
     body: JSON.stringify({ email, senha })
   })
 
-  const data = await res.json()
+  const user = await res.json()
+  localStorage.setItem('isAdmin', user.isAdmin)
+  localStorage.setItem('userId', user.id)
+
 
   if (!res.ok) {
     alert('Usuário ou senha inválidos')
@@ -24,8 +27,9 @@ async function login() {
   }
 
 
-  if (data.isAdmin) {
-    alert(`Login bem-sucedido! Usuário ADMIN: ${data.nome}`)
+  if (user.isAdmin) {
+    alert(`Login bem-sucedido! Usuário ADMIN: ${user.nome}`)
+    location.href= "inicio.html"
   } else {
     location.href= "inicio.html"
   }
@@ -35,3 +39,6 @@ async function login() {
     console.error(error)
   }
 }
+
+
+

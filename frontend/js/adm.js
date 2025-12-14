@@ -101,7 +101,14 @@ async function FindUserById() {
 async function UpidateUser(id) {
   const nome = document.getElementById('edit_nome').value
   const email = document.getElementById('edit_email').value
+  const isAdm = document.getElementById('edit_isAdm').value === 'true'
 
+  const myId = localStorage.getItem('userId')
+
+  if (id === myId && !isAdm) {
+    alert('Você não pode remover seu próprio admin')
+    return
+  }
 
   if (!nome || !email) {
     alert('Preencha todos os campos')
@@ -116,12 +123,19 @@ async function UpidateUser(id) {
     body: JSON.stringify({ nome, email })
   })
 
+  if (isAdm) {
+      await fetch(`${API_URL}/AdmUser/${id}`, { method: 'PUT' })
+    } else {
+      await fetch(`${API_URL}/NormalUser/${id}`, { method: 'PUT' })
+    }
+
   if (!res.ok) {
     alert('Erro ao atualizar usuário')
     return
   }
 
   alert('Usuário atualizado com sucesso')
+  LoadUsers()
 }
 
 
