@@ -31,9 +31,9 @@ export async function FindUserbyId(req,res){
 
 export async function CreateUser(req,res) {
     
-    const {nome, senha} = req.body
+    const {nome, senha, email} = req.body
     try{
-        if(!nome && !senha){
+        if(!nome && !senha && !email){
         res.json({mensagem:"os campos nome e senha não foram preenchidos"})
         return
     }if(!senha){
@@ -42,16 +42,22 @@ export async function CreateUser(req,res) {
     }if(!nome){
         res.json({mensagem:"o campo nome não foi preenchido"})
         return
+    }if(!email){
+        res.json({mensagem:"o campo email não foi preenchido"})
+        return
     }
     const user=await prisma.usuario.create({
         data:{
             nome:nome,
-            senha:senha
+            senha:senha,
+            email:email
         }
     })
     res.json(user )
     }catch(error){
-        res.json({error:"erro ao cadastrar usuario"})
+        res.json({error:"erro ao cadastrar usuario"},
+        console.log(error)
+        )
     }
     
 
@@ -60,11 +66,11 @@ export async function CreateUser(req,res) {
 export async function UpidateUser(req,res) {
 
     const {id}= req.params
-    const {nome, senha}=req.body
+    const {nome, senha, email}=req.body
     try{
         const user= await prisma.usuario.update({
         where:{id:id},
-        data: {nome:nome,senha:senha}
+        data: {nome:nome,senha:senha, email:email}
     })
     res.json(user)
     }catch(error){

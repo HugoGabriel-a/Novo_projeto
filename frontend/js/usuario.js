@@ -6,12 +6,13 @@ const API_URL = 'http://localhost:3000';
 async function CreateUser() {
   try {
     const nome = document.getElementById('nome').value
+    const email = document.getElementById('email').value
     const senha = document.getElementById('senha').value
 
     const res = await fetch(`${API_URL}/CreateUser`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, senha })
+        body: JSON.stringify({ nome, senha, email })
     })
 
     const data = await res.json()
@@ -45,7 +46,7 @@ async function GetUsers() {
 
     users.forEach(user => {
         const li = document.createElement('li')
-        li.textContent = `ID: ${user.id} | Nome: ${user.nome}`
+        li.textContent = `ID: ${user.id} | Nome: ${user.nome} | Email: ${user.email}`
         lista.appendChild(li)
     })
 
@@ -76,6 +77,8 @@ async function GetUserById() {
         div.innerHTML = `
             <p>ID: ${user.id}</p>
             <p>Nome: ${user.nome}</p>
+            <p>Email: ${user.email}</p>
+
         `
 
     } catch (error) {
@@ -86,6 +89,7 @@ async function GetUserById() {
 async function UpidateUser() {
   const id = document.getElementById('update-id').value
   const nome = document.getElementById('update-nome').value
+  const email = document.getElementById('update-email').value
   const senha = document.getElementById('update-senha').value
 
   if (!id) {
@@ -99,7 +103,7 @@ async function UpidateUser() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ nome, senha })
+      body: JSON.stringify({ nome, senha , email})
     })
 
     const data = await res.json()

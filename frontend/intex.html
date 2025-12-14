@@ -17,6 +17,11 @@
         <input type="password" id="senha" placeholder="Digite sua senha">
     </div>
     <br><br>
+    <div>
+        <label for="email">email:</label>
+        <input type="email" id="email" placeholder="Digite seu email">
+    </div>
+    <br><br>
     <button onclick="CreateUser()">Cadastrar</button>
 
     <h2>Usuários</h2>
@@ -36,9 +41,10 @@
 
     <h2>Atualizar usuário</h2>
 
-    <input type="number" id="update-id" placeholder="ID do usuário">
+    <input type="text" id="update-id" placeholder="ID do usuário">
     <input type="text" id="update-nome" placeholder="Novo nome">
-    <input type="password" id="update-senha" placeholder="Nova senha">
+    <input type="email" id="update-email" placeholder="Email">
+    <input type="password" id="update-senha" placeholder="Senha">
 
     <button type="button" onclick="UpidateUser()">Atualizar</button>
 
