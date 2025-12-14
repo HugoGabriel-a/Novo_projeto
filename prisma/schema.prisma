@@ -10,13 +10,18 @@ datasource db {
 model Usuario {
   id    String @id @default(uuid())
   nome  String
+  email String @unique
   senha String
+  isAdmin  Boolean  @default(false)
+
+  
+  @@map("Usuario")
 }
 
-model livro{
-  id    String @id @default(uuid())
-  titulo String
-  autor  String
-  genero String
-  status Boolean
-}
+
+// model livro{
+//   id    String @id @default(uuid())
+//   titulo String
+//   autor  String
+//   genero String
+// }

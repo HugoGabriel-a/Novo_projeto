@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Usuario</title>
+</head>
+<body>
+    <h1>Cadastro Usuario</h1>
+    <div>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" placeholder="Digite seu nome">
+    </div>
+    <br><br>
+    <div>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" placeholder="Digite sua senha">
+    </div>
+    <br><br>
+    <button onclick="CreateUser()">Cadastrar</button>
+
+    <h2>Usuários</h2>
+
+    <button onclick="GetUsers()">Listar todos</button>
+
+    <ul id="lista-users"></ul>
+
+    <hr>
+
+    <h2>Buscar usuário por ID</h2>
+
+    <input type="text" id="user-id" placeholder="ID do usuário">
+    <button onclick="GetUserById()">Buscar</button>
+
+    <div id="user-resultado"></div>
+
+    <h2>Atualizar usuário</h2>
+
+    <input type="number" id="update-id" placeholder="ID do usuário">
+    <input type="text" id="update-nome" placeholder="Novo nome">
+    <input type="password" id="update-senha" placeholder="Nova senha">
+
+    <button type="button" onclick="UpidateUser()">Atualizar</button>
+
+    <h2>Deletar usuário</h2>
+
+    <input type="text" id="delete-id" placeholder="ID do usuário">
+    <button type="button" onclick="DeleteUser()">Deletar</button>
+
+
+
+    <script src="js/usuario.js"></script>
+</body>
+</html>
