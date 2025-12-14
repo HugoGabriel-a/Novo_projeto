@@ -1,0 +1,64 @@
+.titulo{
+    color: white;
+    margin-right: 70%;
+    margin-top: 3%;
+}
+.lista {
+    width: 800px;
+    margin: 50px auto; 
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 18px;
+}
+
+
+.lista table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+.lista td {
+    color: white;
+    padding: 12px;
+    border: 1px solid #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.lista th {
+    background-color: #0d6efd;
+    color: #fff;
+    padding: 12px;
+    border: 1px solid #333;
+    font-weight: 600;
+}
+
+
+.lista tbody tr:nth-child(even) {
+    background-color: #2a2a2a;
+}
+
+.lista tbody tr:hover {
+    background-color: #0c1118;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Título principal */
+.lista h1 {
+    text-align: center;
+    margin: 10px 0 20px 0;
+    font-size: 28px;
+}
+.deletebutton{
+  width: 50%;
+  padding: 10px;
+  background-color: red;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--primary-dark);
+}

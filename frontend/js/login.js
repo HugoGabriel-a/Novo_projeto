@@ -27,7 +27,7 @@ async function login() {
   if (data.isAdmin) {
     alert(`Login bem-sucedido! Usuário ADMIN: ${data.nome}`)
   } else {
-    alert(`Login bem-sucedido! Usuário comum: ${data.nome}`)
+    location.href= "inicio.html"
   }
 
   } catch (error) {

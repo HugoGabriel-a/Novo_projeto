@@ -3,24 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
-  <link rel="stylesheet" href="assets/css/style.css"
+  <link rel="stylesheet" href="assets/css/login.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+
 <body>
+    <div class="container">
+      
+      <h2>Login</h2>
 
-  <div class="container">
-    
-    <h2>Login</h2>
+      <input type="email" id="email" placeholder="Email">
+      <input type="password" id="senha" placeholder="Senha">
 
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="senha" placeholder="Senha">
-
-    <button onclick="login()">Entrar</button>
+      <button onclick="login()">Entrar</button>
 
 
-    <p class="link">
-      Não tem conta?
-      <a href="CreateUser.html">Criar usuário</a>
-    </p>
-  </div>
+      <p class="link">
+        Não tem conta?
+        <a href="CreateUser.html">Criar usuário</a>
+      </p>
+    </div>
+
 
   <script src="js/login.js"></script>
 </body>

@@ -66,11 +66,11 @@ export async function CreateUser(req,res) {
 export async function UpidateUser(req,res) {
 
     const {id}= req.params
-    const {nome, senha, email}=req.body
+    const {nome,email}=req.body
     try{
         const user= await prisma.usuario.update({
         where:{id:id},
-        data: {nome:nome,senha:senha, email:email}
+        data: {nome:nome,email:email}
     })
     res.json(user)
     }catch(error){

@@ -3,24 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Criar Usuário</title>
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/login.css">
+  <link rel="stylesheet" href="assets/css/global.css">
 
 </head>
 <body>
+    <div class="body">
+        <div class="container">
+            <h2>Criar Usuário</h2>
 
-  <div class="container">
-    <h2>Criar Usuário</h2>
+            <input type="text" id="nome" placeholder="Nome">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="senha" placeholder="Senha">
 
-    <input type="text" id="nome" placeholder="Nome">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="senha" placeholder="Senha">
+            <button onclick="CreateUser()">Criar</button>
 
-    <button onclick="CreateUser()">Criar</button>
-
-    <p class="link">
-      Já tem conta? 
-      <a href="./intex.html">Voltar ao login</a>
-    </p>
+            <p class="link">
+            Já tem conta? 
+            <a href="./intex.html">Voltar ao login</a>
+            </p>
+        </div>
   </div>
 
   <script src="js/usuario.js"></script>
