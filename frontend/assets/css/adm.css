@@ -62,3 +62,13 @@
 button:hover {
   background: var(--primary-dark);
 }
+
+
+.busca{
+    width: 800px;
+    margin: 50px auto; 
+}
+
+.busca button{
+    background-color: #001638;
+}
