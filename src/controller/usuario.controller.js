@@ -97,3 +97,55 @@ export async function DeleteUser(req,res) {
     }
     
 }
+
+export async function AdmUser(req, res) {
+  const { id } = req.params
+
+  try {
+    const user = await prisma.usuario.update({
+      where: { id },
+      data: { isAdmin: true }
+    })
+
+    res.json(user)
+  } catch (error) {
+    res.status(400).json({ error: 'Erro ao promover usuário' })
+  }
+}
+
+export async function NormalUser(req, res) {
+  const { id } = req.params
+
+  try {
+    const user = await prisma.usuario.update({
+      where: { id },
+      data: { isAdmin: false }
+    })
+
+    res.json(user)
+  } catch (error) {
+    res.status(400).json({ error: 'Erro ao rebaixar usuário' })
+  }
+}
+
+export async function VerifUser(req, res) {
+    const { email, senha } = req.body
+
+    const user = await prisma.usuario.findFirst({
+    where: {
+        email,
+        senha
+    }
+    })
+
+    if (!user) {
+    return res.status(404).json({ error: 'Usuário não encontrado' })
+    }
+
+    res.json({
+    id: user.id,
+    nome: user.nome,
+    isAdmin: user.isAdmin
+    })
+}
+

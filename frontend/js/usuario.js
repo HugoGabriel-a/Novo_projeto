@@ -1,8 +1,6 @@
 const API_URL = 'http://localhost:3000';
 
 
-
-
 async function CreateUser() {
   try {
     const nome = document.getElementById('nome').value
