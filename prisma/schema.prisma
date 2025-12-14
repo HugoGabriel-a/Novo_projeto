@@ -14,14 +14,20 @@ model Usuario {
   senha String
   isAdmin  Boolean  @default(false)
 
-  
+  livros    Livro[]
+
   @@map("Usuario")
 }
 
 
-// model livro{
-//   id    String @id @default(uuid())
-//   titulo String
-//   autor  String
-//   genero String
-// }
+model Livro{
+  id        String   @id @default(uuid())
+  titulo    String
+  autor     String
+  genero    String
+  status    Boolean  @default(false) 
+
+  UserId String?  
+  usuario   Usuario? @relation(fields: [UserId], references: [id])
+
+}

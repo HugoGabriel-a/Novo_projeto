@@ -18,7 +18,7 @@ router.get("/User",ListaUser)
 
 router.get("/User/:id",FindUserbyId)
 
-router.post("/Createuser",CreateUser)
+router.post("/CreateUser",CreateUser)
 
 router.put("/UpidateUser/:id", UpidateUser)
 

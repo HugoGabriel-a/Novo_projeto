@@ -25,6 +25,7 @@ async function CreateUser() {
 
     console.log('Usuário criado com sucesso:')
     alert('Usuário criado com sucesso')
+    location.href="index.html"
 
     if (adminPassword && adminPassword === ADMIN_PASSWORD) {
         await fetch(`${API_URL}/AdmUser/${user.id}`, {
