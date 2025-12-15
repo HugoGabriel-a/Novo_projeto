@@ -1,7 +1,7 @@
 const API_URL = 'http://localhost:3000'
+const UserId = localStorage.getItem('UserId')
 
 const ADMIN_PASSWORD = '1234'
-
 
 async function CreateUser() {
   try {
@@ -38,3 +38,71 @@ async function CreateUser() {
         console.error('Erro de conexão:', error)    
   }
 }
+
+async function GetMe() {
+  if (!UserId) {
+    alert('Usuário não logado')
+    return
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/User/${UserId}`)
+    if (!res.ok) throw new Error('Erro ao buscar usuário')
+
+    const user = await res.json()
+
+    const tbody = document.getElementById('GetMe')
+    tbody.innerHTML = `
+      <tr>
+        <td>${user.id}</td>
+        <td>${user.nome}</td>
+        <td>${user.email}</td>
+        <td>${user.isAdmin ? 'Sim' : 'Não'}</td>
+      </tr>
+    `
+  } catch (error) {
+    console.error(error)
+    alert('Erro ao carregar dados do usuário')
+  }
+}
+
+async function GetMyBooks() {
+  if (!UserId) {
+    alert('Usuário não logado')
+    return
+  }
+  try {
+    const res = await fetch(`${API_URL}/book`) 
+    if (!res.ok) throw new Error('Erro ao buscar livros')
+    const books = await res.json()
+
+  
+    const myBooks = books.filter(book => book.UserId === UserId)
+    const tbody = document.getElementById('MyBooks')
+    tbody.innerHTML = ''
+
+    myBooks.forEach(book => {
+      const tr = document.createElement('tr')
+      tr.innerHTML = `
+        <td>${book.titulo}</td>
+        <td>${book.autor}</td>
+        <td>${book.genero}</td>
+        <td>${book.UserId ? 'Alugado' : 'Disponível'}</td>
+        <td><button onclick="DevolverBook('${book.id}')">Devolver</button></td>
+      `
+      tbody.appendChild(tr)
+    })
+  } catch (error) {
+    console.error(error)
+    alert('Erro ao carregar livros do usuário')
+  }
+}
+
+
+window.onload = ()=>{
+   GetMe()       
+  GetMyBooks()  
+}
+
+
+
