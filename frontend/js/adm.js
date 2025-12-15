@@ -26,7 +26,7 @@ async function GetUsers() {
       `
     })
   } catch (error) {
-    alert('Erro ao carregar usuários')
+    // alert('Erro ao carregar usuários')
     console.error(error)
   }
 }

@@ -84,7 +84,7 @@ async function GetMe() {
     `
   } catch (error) {
     console.error(error)
-    alert('Erro ao carregar dados do usuário')
+    // alert('Erro ao carregar dados do usuário')
   }
 }
 
@@ -116,7 +116,7 @@ async function GetMyBooks() {
     })
   } catch (error) {
     console.error(error)
-    alert('Erro ao carregar livros do usuário')
+    // alert('Erro ao carregar livros do usuário')
   }
 }
 
