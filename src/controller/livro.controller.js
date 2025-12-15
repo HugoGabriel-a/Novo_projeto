@@ -94,3 +94,27 @@ export async function DeleteBook(req,res) {
     }
     
 }
+
+export async function AlugarBook(req, res) {
+  const { id } = req.params  // 'id' vem da URL
+
+  const { UserId } = req.body
+  if (!UserId) return res.status(400).json({ error: 'UserId é obrigatório' })
+
+  try {
+    // busca o livro pelo id
+    const book = await prisma.livro.findUnique({ where: { id } })
+    if (!book) return res.status(404).json({ error: 'Livro não encontrado' })
+    if (book.UserId) return res.status(400).json({ error: 'Livro já alugado' })
+
+    const updatedBook = await prisma.livro.update({
+      where: { id },
+      data: { UserId: UserId, status: true }
+    })
+
+    res.json(updatedBook)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'Erro ao alugar livro' })
+  }
+}

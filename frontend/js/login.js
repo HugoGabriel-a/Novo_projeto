@@ -11,21 +11,18 @@ async function login() {
 
   try {
   const res = await fetch(`${API_URL}/VerifUser`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, senha })
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email, senha })
   })
-
-  const user = await res.json()
-  localStorage.setItem('isAdmin', user.isAdmin)
-  localStorage.setItem('userId', user.id)
-
-
-  if (!res.ok) {
+   if (!res.ok) {
     alert('Usuário ou senha inválidos')
     return
   }
 
+  const user = await res.json()
+  localStorage.setItem('UserId', user.id)
+  localStorage.setItem('isAdmin', user.isAdmin)
 
   if (user.isAdmin) {
     alert(`Login bem-sucedido! Usuário ADMIN: ${user.nome}`)

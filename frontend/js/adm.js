@@ -135,7 +135,7 @@ async function UpidateUser(id) {
   }
 
   alert('Usuário atualizado com sucesso')
-  LoadUsers()
+  window.onload = GetUsers
 }
 
 
