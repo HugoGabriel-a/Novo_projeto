@@ -118,3 +118,35 @@ export async function AlugarBook(req, res) {
     res.status(500).json({ error: 'Erro ao alugar livro' })
   }
 }
+
+export const DevolverBook = async (req, res) => {
+  const { id } = req.params 
+
+  try {
+    const livro = await prisma.livro.findUnique({
+      where: { id }
+    })
+
+    if (!livro) {
+      return res.status(404).json({ message: "Livro não encontrado" })
+    }
+
+    if (!livro.status) {
+      return res.status(400).json({ message: "Livro já está disponível" })
+    }
+
+    const livroDevolvido = await prisma.livro.update({
+      where: { id },
+      data: {
+        status: false,
+        UserId: null
+      }
+    })
+
+    return res.json({ message: "Livro devolvido com sucesso", livro: livroDevolvido })
+  } catch (error) {
+    console.error(error)
+     console.error(error)
+    return res.status(500).json({ message: "Erro ao devolver livro", error: error.message })
+  }
+}

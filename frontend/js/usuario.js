@@ -38,6 +38,28 @@ async function CreateUser() {
         console.error('Erro de conexão:', error)    
   }
 }
+async function DevolverBook(id) {
+  try {
+    const res = await fetch(`${API_URL}/DevolverBook/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const data = await res.json()
+    if (res.ok) {
+      alert(data.message)
+      const UserId = sessionStorage.getItem('UserId') 
+      getMyBooks(UserId)
+    } else {
+      // alert(data.message)
+    }
+  } catch (error) {
+    console.error('Erro ao devolver livro:', error)
+  }
+}
+
 
 async function GetMe() {
   if (!UserId) {
@@ -98,10 +120,10 @@ async function GetMyBooks() {
   }
 }
 
-
 window.onload = ()=>{
-   GetMe()       
+  GetMe()       
   GetMyBooks()  
+  DevolverBook()
 }
 
 

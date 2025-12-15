@@ -10,7 +10,15 @@ function goToAdm() {
     alert('Você não é administrador')
   }
 }
+function goToBooks() {
+  const isAdmin = localStorage.getItem('isAdmin')
 
+  if (isAdmin === 'true') {
+    window.location.href = "livro.html"
+  } else {
+    alert('Você não é administrador')
+  }
+}
 async function GetBooks() {
   try {
     const res = await fetch(`${API_URL}/book`)

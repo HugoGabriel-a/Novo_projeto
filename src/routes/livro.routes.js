@@ -6,7 +6,8 @@ import{
     CreateBook,
     UpidateBook,
     DeleteBook,
-    AlugarBook
+    AlugarBook,
+    DevolverBook
 }from  "../controller/livro.controller.js"
 
 const router=Router()
@@ -23,5 +24,5 @@ router.delete("/DeleteBook/:id",DeleteBook)
 
 router.put("/AlugarBook/:id",AlugarBook)
 
-
+router.put('/DevolverBook/:id', DevolverBook)
 export default router
